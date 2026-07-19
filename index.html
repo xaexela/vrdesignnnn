@@ -63,7 +63,7 @@
   }
 
   h1,h2,h3{
-    font-family:'Unbounded',sans-serif;
+    font-family:'Manrope',sans-serif;
     line-height:1.05;
     letter-spacing:-.01em;
   }
@@ -289,12 +289,14 @@
 
   /* ---------- portfolio ---------- */
   .cat-row{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+    display:flex;
+    flex-wrap:wrap;
     gap:20px;
     margin-bottom:60px;
   }
   .cat-card{
+    flex:1 1 calc((100% - 40px)/3);
+    min-width:0;
     position:relative;
     height:220px;
     border-radius:var(--r-lg);
@@ -361,13 +363,17 @@
   }
 
   .case-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+    display:flex;
+    flex-wrap:wrap;
     gap:22px;
   }
   .case-panel{display:none;}
-  .case-panel.active{display:grid;}
+  .case-panel.active{display:block;}
   .case-card{
+    flex:1 1 calc((100% - 44px)/3);
+    min-width:0;
+    display:flex;
+    flex-direction:column;
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:var(--r-md);
@@ -444,11 +450,15 @@
 
   /* ---------- services ---------- */
   .svc-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
+    display:flex;
+    flex-wrap:wrap;
     gap:18px;
   }
   .svc-card{
+    flex:1 1 calc((100% - 36px)/3);
+    min-width:0;
+    display:flex;
+    flex-direction:column;
     background:var(--surface);
     border:1px solid var(--border);
     border-radius:var(--r-md);
@@ -514,10 +524,18 @@
 
   /* ---------- about ---------- */
   .about-grid{
-    display:grid;
-    grid-template-columns:1.15fr .85fr;
+    display:flex;
+    flex-wrap:wrap;
     gap:70px;
-    align-items:start;
+    align-items:flex-start;
+  }
+  .about-text{
+    flex:1.15 1 0;
+    min-width:280px;
+  }
+  .about-side{
+    flex:.85 1 0;
+    min-width:260px;
   }
   .about-text p{
     font-size:19px;
@@ -626,17 +644,18 @@
 
   /* ---------- responsive ---------- */
   @media (max-width:980px){
-    .cat-row{grid-template-columns:1fr;}
-    .case-grid{grid-template-columns:repeat(2,1fr);}
-    .svc-grid{grid-template-columns:repeat(2,1fr);}
-    .about-grid{grid-template-columns:1fr;gap:48px;}
+    .cat-card{flex-basis:100%;}
+    .case-card{flex-basis:calc((100% - 22px)/2);}
+    .svc-card{flex-basis:calc((100% - 18px)/2);}
+    .about-grid{gap:48px;}
+    .about-text,.about-side{flex-basis:100%;}
     .contact-box{padding:56px 32px;}
   }
   @media (max-width:620px){
     .wrap{padding:0 22px;}
     section{padding:90px 0;}
-    .case-grid{grid-template-columns:1fr;}
-    .svc-grid{grid-template-columns:1fr;}
+    .case-card{flex-basis:100%;}
+    .svc-card{flex-basis:100%;}
     .hero{padding-top:120px;}
     .hero-actions{flex-direction:column;align-items:stretch;}
     .hero-actions .btn{justify-content:center;}
@@ -707,7 +726,7 @@
 
 <header id="top" class="hero wrap">
   <div class="hero-glow"></div>
-  <h1 class="reveal in">Делаю дизайн,<br>который не хочется <em>закрывать</em></h1>
+  <h1 class="reveal in">Добро пожаловать,<br>на страницу <em>VRDESIGNNNN</em></h1>
   <p class="hero-sub reveal in reveal-delay-1">Оформляю Twitch-каналы, Steam-профили и весь визуал для стримеров и геймеров — от одного баннера до полного ребрендинга канала.</p>
   <div class="hero-actions reveal in reveal-delay-2">
     <a href="#work" class="btn btn-primary">Посмотреть работы</a>
@@ -934,7 +953,7 @@
   <div class="contact-box reveal">
     <div class="contact-glow"></div>
     <div class="eyebrow" style="justify-content:center;margin-bottom:20px">Контакты</div>
-    <h2>Понравились работы и хочешь заказать услугу?</h2>
+    <h2>Понравились работы и хотите заказать услугу?</h2>
     <p class="sub">Пишите в Telegram — обычно отвечаю в течение дня и сразу говорим по делу.</p>
     <a href="https://t.me/vrdesignnnn" class="btn btn-grad" style="position:relative">Написать в Telegram</a>
     <div class="contact-socials">
@@ -944,6 +963,9 @@
 
 <footer>
   © 2026 vrdesignnnn — digital design for streamers &amp; gamers
+</footer>
+<footer>
+  Thanks BAD. for help.
 </footer>
 
 <div class="lightbox" id="lightbox">
