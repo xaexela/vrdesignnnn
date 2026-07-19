@@ -184,6 +184,21 @@
     padding:140px 0 90px;
     overflow:hidden;
   }
+  .hero-bg{
+    position:absolute;
+    inset:0;
+    z-index:-3;
+    overflow:hidden;
+  }
+  .hero-bg img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    opacity:.35;
+    filter:saturate(1.1);
+    -webkit-mask-image:linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 45%, transparent 92%);
+    mask-image:linear-gradient(180deg, rgba(0,0,0,.9) 0%, rgba(0,0,0,.55) 45%, transparent 92%);
+  }
   .hero-glow{
     position:absolute;
     top:-220px;left:50%;
@@ -728,8 +743,9 @@
 </nav>
 
 <header id="top" class="hero wrap">
+  <div class="hero-bg"><img src="https://sorryyourenotawinner.space/api/files/WhGUE/fix.png" alt="" loading="eager"></div>
   <div class="hero-glow"></div>
-  <h1 class="reveal in">Добро пожаловать,<br>на страницу <em>VRDESIGNNNN</em></h1>
+  <h1 class="reveal in">Добро пожаловать на сайт<br><em>VRDESIGNNNN</em></h1>
   <p class="hero-sub reveal in reveal-delay-1">Простой чееееееееееееееееееееееееееееееееееееееееел 
 Занимаюсь оформлением Twitch-каналов, OBS, Steam-профилей и прочими вещами ;)</p>
   <div class="hero-actions reveal in reveal-delay-2">
