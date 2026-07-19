@@ -61,7 +61,7 @@
     max-width:1180px;
     margin:100px auto;
     padding:0 32px;
-    scroll-margin-top: 80px;
+    scroll-margin-top: 114px;
 
   }
 
@@ -87,10 +87,55 @@
     html{scroll-behavior:auto;}
   }
 
+  /* ---------- ticker ---------- */
+  .ticker{
+    position:fixed;
+    top:0;left:0;right:0;
+    z-index:1001;
+    height:34px;
+    background:var(--grad);
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    border-bottom:1px solid rgba(0,0,0,.15);
+  }
+  .ticker-track{
+    display:flex;
+    align-items:center;
+    white-space:nowrap;
+    animation:ticker-scroll 22s linear infinite;
+    will-change:transform;
+  }
+  .ticker:hover .ticker-track{animation-play-state:paused;}
+  .ticker-track span{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:.06em;
+    text-transform:uppercase;
+    color:#0a0a0c;
+    padding:0 24px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+  }
+  .ticker-track span::before{
+    content:"●";
+    font-size:7px;
+    opacity:.6;
+  }
+  @keyframes ticker-scroll{
+    from{transform:translateX(0);}
+    to{transform:translateX(-50%);}
+  }
+  @media (prefers-reduced-motion: reduce){
+    .ticker-track{animation:none;}
+  }
+
   /* ---------- nav ---------- */
   nav{
     position:fixed;
-    top:0;left:0;right:0;
+    top:34px;left:0;right:0;
     z-index:1000;
     background:rgba(7,8,11,.66);
     backdrop-filter:blur(14px) saturate(140%);
@@ -144,6 +189,13 @@
     .nav-cta{display:none;}
   }
 
+  @media (max-width:620px){
+    .ticker{height:30px;}
+    nav{top:30px;}
+    .ticker-track span{font-size:11px;padding:0 16px;}
+    .hero{padding-top:150px;}
+  }
+
   /* ---------- buttons ---------- */
   .btn{
     display:inline-flex;
@@ -181,7 +233,7 @@
     display:flex;
     flex-direction:column;
     justify-content:center;
-    padding:140px 0 90px;
+    padding:174px 0 90px;
     overflow:hidden;
   }
   .hero-bg{
@@ -729,6 +781,27 @@
 </style>
 </head>
 <body>
+
+<div class="ticker">
+  <div class="ticker-track" id="tickerTrack">
+    <span>Открыт набор новых заказов</span>
+    <span>Оформление Twitch-канала — от 2 500 ₽</span>
+    <span>Дизайн профиля Steam — от 2 000 ₽</span>
+    <span>Отвечаю в Telegram в течение дня</span>
+    <span>Открыт набор новых заказов</span>
+    <span>Оформление Twitch-канала — от 2 500 ₽</span>
+    <span>Дизайн профиля Steam — от 2 000 ₽</span>
+    <span>Отвечаю в Telegram в течение дня</span>
+    <span>Открыт набор новых заказов</span>
+    <span>Оформление Twitch-канала — от 2 500 ₽</span>
+    <span>Дизайн профиля Steam — от 2 000 ₽</span>
+    <span>Отвечаю в Telegram в течение дня</span>
+    <span>Открыт набор новых заказов</span>
+    <span>Оформление Twitch-канала — от 2 500 ₽</span>
+    <span>Дизайн профиля Steam — от 2 000 ₽</span>
+    <span>Отвечаю в Telegram в течение дня</span>
+  </div>
+</div>
 
 <nav>
   <div class="nav-inner">
