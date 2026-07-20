@@ -124,7 +124,6 @@
     display:flex;
     align-items:center;
     white-space:nowrap;
-    animation:ticker-scroll 22s linear infinite;
     will-change:transform;
   }
   .ticker:hover .ticker-track{animation-play-state:paused;}
@@ -809,10 +808,6 @@
     <span>Оформление Twitch-канала — от 3 500 ₽</span>
     <span>Дизайн профиля Steam — от 2 500 ₽</span>
     <span>Отвечаю в Telegram в течение дня</span>
-    <span>Открыт набор новых заказов</span>
-    <span>Оформление Twitch-канала — от 2 500 ₽</span>
-    <span>Дизайн профиля Steam — от 2 000 ₽</span>
-    <span>Отвечаю в Telegram в течение дня</span>
   </div>
 </div>
 
@@ -1145,6 +1140,53 @@
 </div>
 
 <script>
+  // ---------- infinite ticker (adaptive, seamless loop) ----------
+  (function(){
+    const track = document.getElementById('tickerTrack');
+    const container = track.parentElement;
+    const baseItems = Array.from(track.children);
+    const SPEED = 70; // px per second, controls scroll speed
+
+    function build(){
+      track.style.animation = 'none';
+      track.querySelectorAll('.ticker-clone').forEach(n => n.remove());
+
+      let unitWidth = track.scrollWidth;
+      const containerWidth = container.offsetWidth;
+
+      // repeat the base phrase set until one "unit" is at least as wide as the screen
+      while(unitWidth < containerWidth){
+        baseItems.forEach(item => {
+          const clone = item.cloneNode(true);
+          clone.classList.add('ticker-clone');
+          clone.setAttribute('aria-hidden', 'true');
+          track.appendChild(clone);
+        });
+        unitWidth = track.scrollWidth;
+      }
+
+      // duplicate the whole unit exactly once more so the track is two equal,
+      // identical halves -> translateX(-50%) loops with no visible seam or gap
+      Array.from(track.children).forEach(item => {
+        const clone = item.cloneNode(true);
+        clone.classList.add('ticker-clone');
+        clone.setAttribute('aria-hidden', 'true');
+        track.appendChild(clone);
+      });
+
+      const duration = unitWidth / SPEED;
+      void track.offsetWidth; // force reflow before restarting animation
+      track.style.animation = `ticker-scroll ${duration}s linear infinite`;
+    }
+
+    build();
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(build, 200);
+    });
+  })();
+
   // scroll reveal
   const revealEls = document.querySelectorAll('.reveal');
   const io = new IntersectionObserver((entries) => {
