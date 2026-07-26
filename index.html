@@ -127,6 +127,55 @@
     html{scroll-behavior:auto;}
   }
 
+  /* ---------- tip bar ---------- */
+  .tip-bar{
+    max-width:1180px;
+    margin:0 auto 40px;
+    padding:0 32px;
+  }
+  .tip-bar-inner{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    gap:16px;
+    flex-wrap:wrap;
+    padding:16px 22px;
+    border-radius:16px;
+    border:1px solid var(--border);
+    background:var(--surface);
+  }
+  .tip-bar-text{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-size:13.5px;
+    color:var(--text-dim);
+  }
+  .tip-bar-text b{color:var(--text);font-weight:600;}
+  .tip-bar-icon{
+    width:8px;height:8px;border-radius:50%;
+    background:var(--grad);
+    flex:none;
+  }
+  .tip-bar-link{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12.5px;
+    font-weight:600;
+    letter-spacing:.02em;
+    padding:9px 18px;
+    border-radius:999px;
+    background:var(--grad);
+    color:#fff;
+    white-space:nowrap;
+    transition:transform .25s, box-shadow .25s;
+  }
+  .tip-bar-link:hover{transform:translateY(-2px);box-shadow:0 10px 22px rgba(246,110,92,.28);}
+
+  @media (max-width:560px){
+    .tip-bar-inner{flex-direction:column;align-items:flex-start;text-align:left;}
+    .tip-bar-link{align-self:stretch;text-align:center;}
+  }
+
   /* ---------- ticker ---------- */
   .ticker{
     position:fixed;
@@ -1145,6 +1194,16 @@
     </div>
   </div>
 </section>
+
+<div class="tip-bar">
+  <div class="tip-bar-inner">
+    <div class="tip-bar-text">
+      <span class="tip-bar-icon"></span>
+      Так же, можете просто<b>поддержать</b> проект чаевыми — это мотивирует делать больше.
+    </div>
+    <a href="https://www.tinkoff.ru/rm/r_ZObjBxoVur.kHSUtVNhEe/QwtOZ41223" class="tip-bar-link" target="_blank" rel="noopener noreferrer">Поддержать ♥</a>
+  </div>
+</div>
 
 <footer>
   © 2026 vrdesign — digital design for streamers &amp; gamers
